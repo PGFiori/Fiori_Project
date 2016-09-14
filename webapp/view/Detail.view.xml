@@ -11,13 +11,23 @@
 				<items>
 					<IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="{i18n>detailIconTabBarInfo}">
 					<content>
-					    <sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" id="__form0">
+					    <sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" id="__form0" class="sapUiLargeMarginBegin">
 					        <sap.ui.layout.form:formContainers>
 					            <sap.ui.layout.form:FormContainer id="__container1">
 					            <sap.ui.layout.form:formElements>
-					                <sap.ui.layout.form:FormElement label="Label" id="__element0">
+					                <sap.ui.layout.form:FormElement label="{/#SoHeaderData/Vkorg/@sap:label}" id="__element0">
 					                    <sap.ui.layout.form:fields>
-					                        <Text id="__input0" text="Test"/>
+					                        <Text id="__Vkorg" text="{Vkorg}"/>
+					                    </sap.ui.layout.form:fields>
+					                </sap.ui.layout.form:FormElement>
+					                <sap.ui.layout.form:FormElement label="{/#SoHeaderData/Vtweg/@sap:label}" id="__element2">
+					                	<sap.ui.layout.form:fields>
+					                        <Text id="__Vtweg" text="{Vtweg}"/>
+					                    </sap.ui.layout.form:fields>
+					                </sap.ui.layout.form:FormElement>
+					                <sap.ui.layout.form:FormElement label="{/#SoHeaderData/Spart/@sap:label}" id="__element1">
+					                	<sap.ui.layout.form:fields>
+					                        <Text id="__Spart" text="{Spart}"/>
 					                    </sap.ui.layout.form:fields>
 					                </sap.ui.layout.form:FormElement>
 					            </sap.ui.layout.form:formElements>
