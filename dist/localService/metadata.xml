@@ -1,0 +1,86 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZEMPLOYEE_INFORMATION_SRV" xml:lang="en" sap:schema-version="0001">
+            <EntityType Name="EmployeeHeader" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmpId"/>
+                </Key>
+                <Property Name="EmpId" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Address" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Salary" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Street1" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Street" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Street2" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Street" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="City" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="EmpContDetailsNavig" Relationship="ZEMPLOYEE_INFORMATION_SRV.EmployeeContDetailsAssoc" FromRole="FromRole_EmployeeContDetailsAssoc" ToRole="ToRole_EmployeeContDetailsAssoc"/>
+                <NavigationProperty Name="EmpPhotoNavig" Relationship="ZEMPLOYEE_INFORMATION_SRV.EmployeePhotoAssoc" FromRole="FromRole_EmployeePhotoAssoc" ToRole="ToRole_EmployeePhotoAssoc"/>
+            </EntityType>
+            <EntityType Name="EmployeeContact" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmpId"/>
+                </Key>
+                <Property Name="EmpId" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MobOnWb" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LndlnOnWd" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MobOnLv" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LndlnOnLv" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="EmployeePhoto" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmpId"/>
+                </Key>
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Client" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmpId" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mimetype" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="Character 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Filename" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="Character 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Content" Type="Edm.Binary" Nullable="false" sap:label="raw string" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="EmployeePhotoAssoc" sap:content-version="1">
+                <End Type="ZEMPLOYEE_INFORMATION_SRV.EmployeeHeader" Multiplicity="1" Role="FromRole_EmployeePhotoAssoc"/>
+                <End Type="ZEMPLOYEE_INFORMATION_SRV.EmployeePhoto" Multiplicity="*" Role="ToRole_EmployeePhotoAssoc"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_EmployeePhotoAssoc">
+                        <PropertyRef Name="EmpId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_EmployeePhotoAssoc">
+                        <PropertyRef Name="EmpId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="EmployeeContDetailsAssoc" sap:content-version="1">
+                <End Type="ZEMPLOYEE_INFORMATION_SRV.EmployeeHeader" Multiplicity="1" Role="FromRole_EmployeeContDetailsAssoc"/>
+                <End Type="ZEMPLOYEE_INFORMATION_SRV.EmployeeContact" Multiplicity="*" Role="ToRole_EmployeeContDetailsAssoc"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_EmployeeContDetailsAssoc">
+                        <PropertyRef Name="EmpId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_EmployeeContDetailsAssoc">
+                        <PropertyRef Name="EmpId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZEMPLOYEE_INFORMATION_SRV_Entities" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="EmployeeHeaderSet" EntityType="ZEMPLOYEE_INFORMATION_SRV.EmployeeHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="EmployeeContactSet" EntityType="ZEMPLOYEE_INFORMATION_SRV.EmployeeContact" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="EmployeePhotoSet" EntityType="ZEMPLOYEE_INFORMATION_SRV.EmployeePhoto" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="EmployeePhotoAssocSet" Association="ZEMPLOYEE_INFORMATION_SRV.EmployeePhotoAssoc" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeHeaderSet" Role="FromRole_EmployeePhotoAssoc"/>
+                    <End EntitySet="EmployeePhotoSet" Role="ToRole_EmployeePhotoAssoc"/>
+                </AssociationSet>
+                <AssociationSet Name="EmployeeContDetailsAssocSet" Association="ZEMPLOYEE_INFORMATION_SRV.EmployeeContDetailsAssoc" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="EmployeeHeaderSet" Role="FromRole_EmployeeContDetailsAssoc"/>
+                    <End EntitySet="EmployeeContactSet" Role="ToRole_EmployeeContDetailsAssoc"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZEMPLOYEE_INFORMATION_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZEMPLOYEE_INFORMATION_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

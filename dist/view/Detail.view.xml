@@ -1,0 +1,54 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:footerbar="sap.ushell.ui.footerbar" controllerName="empinfo28.controller.Detail">
+	<Page id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+		<content>
+			<ObjectHeader id="objectHeader" title="{Name}" numberUnit="{Country}"/>
+			<Label text="Salary : {Salary}" width="100%" id="__label1" textAlign="Center"/>
+			<Label text="Address : {Street1},{Street2},{City},{Country}" width="100%" id="__label2" textAlign="Center"/>
+			<IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding" visible="false">
+				<items>
+					<IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="{i18n>detailIconTabBarInfo}">
+					</IconTabFilter>
+					<IconTabFilter id="iconTabBarFilter2" icon="sap-icon://attachment" tooltip="{i18n>detailIconTabBarAttachments}"/>
+				</items>
+			</IconTabBar>
+			<Table id="lineItemsList" width="auto" items="{EmpContDetailsNavig}" updateFinished="onListUpdateFinished" noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar id="lineItemsToolbar">
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="Contact"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right">
+						<Text text="{i18n>detailLineItemTableUnitNumberColumn}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier text="{MobOnWb}&#10;{LndlnOnWd}&#10;{MobOnLv}&#10;{LndlnOnLv}"/>
+							<ObjectNumber unit="{EmpId}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<footer>
+			<OverflowToolbar id="footerToolbar">
+				<ToolbarSpacer/>
+				<Button id="shareButton" tooltip="{i18n>shareTooltip}" icon="sap-icon://action" press="onSharePress">
+					<dependents>
+						<ActionSheet id="shareSheet" showCancelButton="true" placement="Top">
+							<buttons>
+								<Button id="shareEmail" icon="sap-icon://email" text="{i18n>shareSendEmail}" press="onShareEmailPress"/>
+								<Button id="shareInJam" icon="sap-icon://jam" text="{i18n>shareOnJamTitle}" press="onShareInJamPress" visible="{FLP>/isShareInJamActive}"/>
+								<footerbar:AddBookmarkButton id="shareTile" appData="{ path: 'detailView>/saveAsTileTitle', formatter: '.formatter.shareTileData' }"/>
+							</buttons>
+						</ActionSheet>
+					</dependents>
+				</Button>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>
