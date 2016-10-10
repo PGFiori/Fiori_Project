@@ -21,7 +21,10 @@ sap.ui.define([
 			var oViewModel = new JSONModel({
 				busy: false,
 				delay: 0,
-				lineItemListTitle: this.getResourceBundle().getText("detailLineItemTableHeading")
+				lineItemListTitle: this.getResourceBundle().getText("detailLineItemTableHeading"),
+				edit: false,
+				display: true,
+				itemCount: 0
 			});
 
 			this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
@@ -98,6 +101,7 @@ sap.ui.define([
 					sTitle = this.getResourceBundle().getText("detailLineItemTableHeading");
 				}
 				oViewModel.setProperty("/lineItemListTitle", sTitle);
+				oViewModel.setProperty("/itemCount", iTotalItems);
 			}
 		},
 
@@ -173,6 +177,8 @@ sap.ui.define([
 
 			oViewModel.setProperty("/saveAsTileTitle", oResourceBundle.getText("shareSaveTileAppTitle", [sObjectName]));
 			oViewModel.setProperty("/shareOnJamTitle", sObjectName);
+			oViewModel.setProperty("/edit",false);
+			oViewModel.setProperty("/display",true);
 			oViewModel.setProperty("/shareSendEmailSubject",
 				oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
 			oViewModel.setProperty("/shareSendEmailMessage",
@@ -200,6 +206,56 @@ sap.ui.define([
 			oViewModel.setProperty("/busy", true);
 			// Restore original busy indicator delay for the detail view
 			oViewModel.setProperty("/delay", iOriginalViewBusyDelay);
+		},
+		
+		enableEditMode: function(){
+			var oViewModel = this.getModel("detailView");
+			oViewModel.setProperty("/edit", true);
+			oViewModel.setProperty("/display",false);
+		},
+		
+		disableEditMode: function(){
+			var oViewModel = this.getModel("detailView");
+			oViewModel.setProperty("/edit",false);
+			oViewModel.setProperty("/display",true);
+		},
+		
+		resetChange: function(){
+			this.getModel().resetChanges();
+		},
+		
+		submitChange: function(){
+			this.getModel().submitChanges();
+		},
+		
+		onEditPress: function(){
+			var oViewModel = this.getModel("detailView");
+			if(!oViewModel.getProperty("/edit")){
+				this.enableEditMode();
+			}else{
+				this.disableEditMode();
+			}
+		},
+		
+		onSaveEdit: function(){
+			// if(this.getModel().hasPendingChanges()){
+			// 	this.submitChange();
+			// }
+			
+			var aItemList = this.getView().byId("lineItemsList").getAggregation("items");
+			var iCount = this.getModel("detailView").getProperty("/itemCount");
+			
+			for(var i = 0; i < iCount; i++){
+				var sPath = aItemList[i].getBindingContext().sPath;
+				var oModel = this.getModel();
+				var oItem = oModel.getProperty(sPath);
+				
+				oModel.update(sPath,oItem);
+			}
+		},
+		
+		onResetPress: function(){
+			this.resetChanges();
 		}
 
 	});

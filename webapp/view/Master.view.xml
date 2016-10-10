@@ -19,7 +19,7 @@
 				<items>
 					<ObjectListItem type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" press="onSelectionChange" title="{Vbeln}" number="{ path: 'Netwr', formatter: '.formatter.currencyValue' }">
 					    <attributes>
-					        <ObjectAttribute active="false" id="__attribute8" text="{Ernam}"/>
+					        <ObjectAttribute active="false" text="{Ernam}"/>
 					    </attributes>
 					</ObjectListItem>
 				</items>

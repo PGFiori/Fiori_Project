@@ -110,7 +110,8 @@ sap.ui.define([
 					}
 				}
 			});
-
+			
+			oModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
 			this.setModel(oModel);
 			this._createMetadataPromise(oModel);
 

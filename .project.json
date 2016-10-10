@@ -8,7 +8,8 @@
     "excludedFiles": [
       "test.html"
     ],
-    "buildRequired": true
+    "buildRequired": false,
+    "lastBuildDateTime": "Mon, 10 Oct 2016 09:09:29 GMT"
   },
   "projectType": [
     "com.watt.common.builder.sapui5clientbuild",
@@ -34,5 +35,9 @@
     "defaultLanguage": "en",
     "defaultI18NPropertyFile": "i18n.properties",
     "resourceModelName": "i18n"
+  },
+  "deploy": {
+    "destination": "BIB_Connect",
+    "name": "ZSALES_ORDER"
   }
 }
