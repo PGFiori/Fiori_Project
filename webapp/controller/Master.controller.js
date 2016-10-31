@@ -170,10 +170,6 @@ sap.ui.define([
 						grouper[sKey].bind(oEvent.getSource()))
 				);
 			}
-			
-			if(aSorters.length > 0) {
-
-			}
 
 			this._applyGroupSort(aSorters);
 		},

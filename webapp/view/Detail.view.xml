@@ -1,7 +1,7 @@
 <mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:footerbar="sap.ushell.ui.footerbar" controllerName="so.display.controller.Detail">
 	<Page id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
 		<headerContent>
-			<Button icon="sap-icon://edit" tooltip="Edit" press="onEditPress" />
+			<Button icon="sap-icon://edit" tooltip="Edit" press="onEditPress" visible="false"/>
 		</headerContent>
 		<content>
 			<ObjectHeader id="objectHeader" title="{Vbeln}" number="{ path: 'Netwr', formatter: '.formatter.currencyValue' }">
@@ -44,7 +44,7 @@
 					<IconTabFilter id="iconTabBarFilter2" icon="sap-icon://attachment" tooltip="{i18n>detailIconTabBarAttachments}"/>
 				</items>
 			</IconTabBar>
-			<Table id="lineItemsList" width="auto" items="{HeaderToItemNav}" updateFinished="onListUpdateFinished" noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin">
+			<Table id="lineItemsList" width="auto" items="{HeaderToItemNav}" updateFinished="onListUpdateFinished" noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin" mode="SingleSelectMaster" selectionChange="onSelectionChange">
 				<headerToolbar>
 					<Toolbar id="lineItemsToolbar">
 						<Title id="lineItemsHeader" text="{detailView>/lineItemListTitle}"/>
@@ -65,8 +65,8 @@
 					<ColumnListItem>
 						<cells>
 							<ObjectIdentifier title="{Matnr}" text="{Posnr}"/>
-							<Text text="{Kwmeng}"></Text>
-							<Input value="{Kwmeng}" width="100px"></Input>
+							<Text text="{Kwmeng}"/>
+							<Input value="{Kwmeng}" width="100px"/>
 						</cells>
 					</ColumnListItem>
 				</items>
@@ -75,8 +75,8 @@
 		<footer>
 			<OverflowToolbar id="footerToolbar">
 				<ToolbarSpacer/>
-				<Button icon="sap-icon://save" text="Save" press="onSaveEdit" type="Accept" enabled="{detailView>/edit}"></Button>
-				<Button icon="sap-icon://reset" text="Reset" press="onResetPress" type="Reject" enabled="{detailView>/edit}"></Button>
+				<Button icon="sap-icon://save" text="Save" press="onSaveEdit" type="Accept" enabled="{detailView>/edit}" visible="false"/>
+				<Button icon="sap-icon://reset" text="Reset" press="onResetPress" type="Reject" enabled="{detailView>/edit}" visible="false"/>
 				<Button id="shareButton" tooltip="{i18n>shareTooltip}" icon="sap-icon://action" press="onSharePress">
 					<dependents>
 						<ActionSheet id="shareSheet" showCancelButton="true" placement="Top">

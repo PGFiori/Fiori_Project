@@ -51,6 +51,10 @@ sap.ui.define([
 					"pattern": "SoHeaderDataSet/{objectId}",
 					"name": "object",
 					"target": ["master", "object"]
+				}, {
+					"pattern": "SoItemDataSet/{SOID}/{ItemID}",
+					"name": "item",
+					"target": ["master", "item"]
 				}],
 
 				"targets": {
@@ -64,6 +68,12 @@ sap.ui.define([
 						"viewName": "Detail",
 						"viewId": "detail",
 						"viewLevel": 2
+					},
+					
+					"item": {
+						"viewName": "ItemDetail",
+						"viewId": "item",
+						"viewLevel": 3
 					},
 					"detailObjectNotFound": {
 						"viewName": "DetailObjectNotFound",
