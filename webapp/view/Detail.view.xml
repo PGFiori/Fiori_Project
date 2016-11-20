@@ -71,6 +71,33 @@
 					</ColumnListItem>
 				</items>
 			</Table>
+			<Table id="lineConditionList" width="auto" items="{SoOrderConditionSet}" busyIndicatorDelay="{detailView>/lineItemTableDelay}" updateFinished="onConditionListUpdateFinished" noDataText="No Condition Found" class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar id="lineConditionToolbar">
+						<Title id="lineConditionHeader" text="{detailView>/lineConditionListTitle}"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="{i18n>detailLineConditionTableIDColumn}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+						<Text text="Condition St No"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+						<Text text="Condition Value"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier title="{vbeln}" text="{ITM_NUMBER}"/>
+							<Text text="{COND_ST_NO}"/>
+							<Text text="{COND_VALUE}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
 		</content>
 		<footer>
 			<OverflowToolbar id="footerToolbar">

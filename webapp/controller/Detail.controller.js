@@ -21,7 +21,9 @@ sap.ui.define([
 				lineItemListTitle: this.getResourceBundle().getText("detailLineItemTableHeading"),
 				edit: false,
 				display: true,
-				itemCount: 0
+				itemCount: 0,
+				lineConditionListTitle: this.getResourceBundle().getText("detailLineConditionTableHeading"),
+				conditionCount: 0
 			});
 			this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
 			this.setModel(oViewModel, "detailView");
@@ -84,6 +86,23 @@ sap.ui.define([
 				}
 				oViewModel.setProperty("/lineItemListTitle", sTitle);
 				oViewModel.setProperty("/itemCount", iTotalItems);
+			}
+			oViewModel.setProperty("/busy", false);
+		},
+		
+		onConditionListUpdateFinished: function(oEvent) {
+			var sTitle, iTotalItems = oEvent.getParameter("total"),
+				oViewModel = this.getModel("detailView");
+			// only update the counter if the length is final
+			if (this.byId("lineConditionList").getBinding("items").isLengthFinal()) {
+				if (iTotalItems) {
+					sTitle = this.getResourceBundle().getText("detailLineConditionTableHeadingCount", [iTotalItems]);
+				} else {
+					//Display 'Line Items' instead of 'Line items (0)'
+					sTitle = this.getResourceBundle().getText("detailLineConditionTableHeading");
+				}
+				oViewModel.setProperty("/lineConditionListTitle", sTitle);
+				oViewModel.setProperty("/conditionCount", iTotalItems);
 			}
 			oViewModel.setProperty("/busy", false);
 		},

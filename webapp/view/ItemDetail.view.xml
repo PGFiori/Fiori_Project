@@ -1,19 +1,14 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:footerbar="sap.ushell.ui.footerbar"
-	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" controllerName="so.display.controller.ItemDetail">
-	<Page title="Item Detail" id="itempage" navButtonPress="onNavBack" showNavButton="true" busy="{itemDetailView>/busy}"
-		busyIndicatorDelay="{itemDetailView>/delay}">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" controllerName="so.display.controller.ItemDetail">
+	<Page title="Item Detail" id="itempage" navButtonPress="onNavBack" showNavButton="true" busy="{itemDetailView>/busy}" busyIndicatorDelay="{itemDetailView>/delay}">
 		<content>
 			<l:VerticalLayout class="sapUiContentPadding" width="100%">
 				<l:content>
-					<Label xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns="sap.m"
-						text="SOID" id="__label2"/>
-					<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns="sap.m"
-						id="productInput_copy" type="Text" value="{Vbeln}" width="30%"></Input>
+					<Label xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns="sap.m" text="SOID" id="__label2"/>
+					<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns="sap.m" id="productInput_copy" type="Text" value="{Vbeln}" width="30%" enabled="false"/>
 					<Label text="Posnr" width="100%" id="__label1"/>
-					<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns="sap.m"
-						id="productInput_copy2" type="Text" value="{Posnr}" width="30%"></Input>
+					<Input xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns="sap.m" id="productInput_copy2" type="Text" value="{Posnr}" width="30%" enabled="false"/>
 					<Label text="Quantity"/>
-					<Input id="productInput" type="Text" value="{Kwmeng}" width="30%"></Input>
+					<Input id="productInput" type="Text" value="{Kwmeng}" width="30%"/>
 				</l:content>
 			</l:VerticalLayout>
 		</content>
