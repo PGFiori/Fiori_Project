@@ -78,9 +78,6 @@
 					</Toolbar>
 				</headerToolbar>
 				<columns>
-					<Column>
-						<Text text="{i18n>detailLineConditionTableIDColumn}"/>
-					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
 						<Text text="Condition St No"/>
 					</Column>
@@ -91,7 +88,6 @@
 				<items>
 					<ColumnListItem>
 						<cells>
-							<ObjectIdentifier title="{vbeln}" text="{ITM_NUMBER}"/>
 							<Text text="{COND_ST_NO}"/>
 							<Text text="{COND_VALUE}"/>
 						</cells>
